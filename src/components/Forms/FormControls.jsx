@@ -1,16 +1,10 @@
-import { Children, cloneElement } from 'react';
 import classNames from 'classnames'; //what does this do?
 import styles from './FormControls.css';
 
-function FormControl({ label, children, className: customClassName }) {
-  const classNames = classNames(styles.FormControl, customClassName);
+function FormControl({ className: customClassName }) {
+  const className = classNames(styles.FormControl, customClassName);
 
-  return (
-    <label className={className}>
-      <LabelText text={label} />
-      {children}
-    </label>
-  );
+  return <label className={className}></label>;
 }
 
 //inputs form controller
@@ -23,9 +17,9 @@ export function InputControl({ label, className, value, ...rest }) {
 }
 
 //textarea form controller
-export function TextAreaControl({ label, ...rest }) {
+export function TextAreaControl({ ...rest }) {
   return (
-    <FormControl label={label}>
+    <FormControl>
       <textarea {...rest}></textarea>
     </FormControl>
   );
@@ -33,7 +27,7 @@ export function TextAreaControl({ label, ...rest }) {
 
 //select form controller
 
-export function SelectControl({ label, children, value, ...rest }) {
+export function SelectControl({ children, value, ...rest }) {
   return (
     <FormControl>
       <select value={value || ''} {...rest}>
@@ -43,14 +37,23 @@ export function SelectControl({ label, children, value, ...rest }) {
   );
 }
 
+function Option({ text, type, ...rest }) {
+  return (
+    <label className={styles.CheckboxLabel}>
+      <input type={type} {...rest} />
+      {text}
+    </label>
+  );
+}
+
 //checkbox form controller
 export function CheckboxOption(props) {
   return <Option type="checkbox" {...props} />;
 }
-export function CheckboxControl({ label, ...rest }) {
+
+export function CheckboxControl({ ...rest }) {
   return (
     <div className={styles.FormCotrol}>
-      <LabelText text={label} />
       <CheckboxOption {...rest} />
     </div>
   );
