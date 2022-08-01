@@ -6,7 +6,8 @@ export function useSearch() {
   const [params, setParamsObject] = useState({});
 
   useEffect(() => {
-    setParamsObject(Object.fromEntries(searchParams.entries()));
+    // eslint-disable-next-line max-len
+    setParamsObject(Object.fromEntries(searchParams.entries())); //what does ths line do
   }, [searchParams.toString()]);
 
   const setParams = (search) => {
