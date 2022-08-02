@@ -1,4 +1,4 @@
-import { client } from './client.js';
+import { client } from './supabase-client.js';
 
 export async function getFamiliesWithBunnies() {
   const response = await client.from('loving_families').select(`
