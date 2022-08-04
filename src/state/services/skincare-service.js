@@ -5,3 +5,7 @@ export async function getAllSkincare() {
   console.log(response);
   return response;
 }
+
+export async function removeSkincare(id) {
+  return await client.from('skincare').delete().eq('id', id).single();
+}
