@@ -1,13 +1,11 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { SkincareStateContext } from '../context/SkincareContext';
 import { getAllSkincare } from '../services/skincare-service.js';
-import { SkincareDispatchContext } from '../context/SkincareContext.jsx';
 import { showSuccess, showError } from '../services/toaster.js';
 
-export function useFamilies() {
+export function useSkincare() {
   const [error, setError] = useState(null);
-  const { skincare } = useContext(SkincareStateContext);
-  const { skincareDispatch } = useContext(SkincareDispatchContext);
+  const { skincare, skincareDispatch } = useContext(SkincareStateContext);
 
   useEffect(() => {
     if (skincare) return;
@@ -30,35 +28,46 @@ export function useFamilies() {
     return () => (ignore = true);
   }, []);
 
-  return { skincare, error };
+  return { skincare: skincare || [], error };
 }
 
-function createDispatchActions(dispatch) {
-  return function createAction({ service, type, success }) {
-    return async (...args) => {
-      const { data, error } = await service(...args);
+// function createDispatchActions(dispatch) {
+//   return function createAction({ service, type, success }) {
+//     return async (...args) => {
+//       const { data, error } = await service(...args);
 
-      if (error) showError(error.message);
+//       if (error) showError(error.message);
 
-      if (data) {
-        dispatch({ type, payload: data });
-        const successMessage = success(data);
-        showSuccess(successMessage);
-      }
-    };
-  };
-}
+//       if (data) {
+//         dispatch({ type, payload: data });
+//         const successMessage = success(data);
+//         showSuccess(successMessage);
+//       }
+//     };
+//   };
+// }
 
 export function useSkincareActions() {
-  const { skincareDispatch } = useContext(SkincareDispatchContext);
+  const { skincareDispatch } = useContext(SkincareStateContext);
 
-  const createAction = createDispatchActions(skincareDispatch);
+  // const createAction = createDispatchActions(skincareDispatch);
 
-  const add = createAction({
-    service: getAllSkincare, //where do i get this line from?
-    type: 'add',
-    success: (data) => `Added new skincare "${data.name}"`,
-  });
+  // const add = createAction({
+  //   service: getAllSkincare,
+  //   type: 'add',
+  //   success: (data) => `Added new skincare "${data.name}"`,
+  // });
 
-  return useMemo(() => ({ add, remove, update }), [skincareDispatch]);
+  const add = async (skincare) => {
+    const { data, error } = await getAllSkincare();
+    if (error) {
+      showError(error.message);
+    }
+    if (data) {
+      skincareDispatch({ type: 'add', payload: data });
+      showSuccess(`Added ${data.name}`);
+    }
+  };
+
+  return { add };
 }

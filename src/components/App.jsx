@@ -8,30 +8,27 @@ import Layout from './Page/Layout.jsx';
 import Home from './Home/Home.jsx';
 import About from './About/About.jsx';
 import Pokedex from './Pokedex/Pokedex.jsx';
-import FuzzyBunny from './FuzzyBunny/FuzzyBunny.jsx';
-import Families from './FuzzyBunny/Families.jsx';
-import Bunnies from './FuzzyBunny/Bunnies.jsx';
-import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext.jsx';
+import { Toaster } from 'react-hot-toast';
+import Skincare from './Skincare/Skincare.jsx';
+import SkincareProvider from '../state/context/SkincareContext';
 
 export default function App() {
   return (
     <Router>
-      <FuzzyBunnyProvider>
+      <Toaster />
+      <SkincareProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="pokedex" element={<Pokedex />} />
             <Route path="about" element={<About />} />
-            <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
-              <Route index element={<Families />} />
-              <Route path="bunnies" element={<Bunnies />} />
-            </Route>
+            <Route path="skincare" element={<Skincare />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             {/* what does
           this line of code do? */}
           </Route>
         </Routes>
-      </FuzzyBunnyProvider>
+      </SkincareProvider>
     </Router>
   );
 }

@@ -1,8 +1,8 @@
-import { createContext, useMemo, useReducer } from 'react';
+import { createContext, useReducer } from 'react';
 
 export const SkincareStateContext = createContext();
-export const SkincareDispatchContext = createContext();
 
+//what is happening here?
 function reducer(list, { type, payload }) {
   switch (type) {
     case 'load':
@@ -19,27 +19,21 @@ function reducer(list, { type, payload }) {
 }
 
 export default function SkincareProvider({ children }) {
+  //where is children coming from?
   const [skincare, skincareDispatch] = useReducer(reducer, null);
-  const [skincareEx, skincareExDispatch] = useReducer(reducer, null);
+  // const [skincareEx, skincareExDispatch] = useReducer(reducer, null);
+  //where is happening here ?
 
   const stateValue = {
     skincare,
-    skincareEx,
+    skincareDispatch,
   };
 
-  const dispatchValue = useMemo(
-    () => ({
-      skincareDispatch,
-      skincareExDispatch,
-    }),
-    [skincareDispatch, skincareExDispatch]
-  );
+  //what is this piece of code doing?
 
   return (
     <SkincareStateContext.Provider value={stateValue}>
-      <SkincareDispatchContext.Provider value={dispatchValue}>
-        {children}
-      </SkincareDispatchContext.Provider>
+      {children}
     </SkincareStateContext.Provider>
   );
 }

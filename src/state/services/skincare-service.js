@@ -1,5 +1,7 @@
 import client from './supabase-client.js';
 
 export async function getAllSkincare() {
-  return await client.from('skincare').select('*');
+  const response = await client.from('skincare').select('*');
+  console.log(response);
+  return response;
 }
