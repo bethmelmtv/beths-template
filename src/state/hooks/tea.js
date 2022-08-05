@@ -50,29 +50,29 @@ export function useTeaFamilies() {
   return { families: families || [], error };
 }
 
-// function createDispatchActions(dispatch) {
-//   return function createAction({ service, type, success }) {
-//     return async (...args) => {
-//       const { data, error } = await service(...args);
+function createDispatchActions(dispatch) {
+  return function createAction({ service, type, success }) {
+    return async (...args) => {
+      const { data, error } = await service(...args);
 
-//       if (error) showError(error.message);
+      if (error) showError(error.message);
 
-//       if (data) {
-//         dispatch({ type, payload: data });
-//         const successMessage = success(data);
-//         showSuccess(successMessage);
-//       }
-//     };
-//   };
-// }
+      if (data) {
+        dispatch({ type, payload: data });
+        const successMessage = success(data);
+        showSuccess(successMessage);
+      }
+    };
+  };
+}
 
 export function useTeaFamilyActions() {
   const { familiesDispatch } = useContext(TeaActionContext);
 
-  // const createAction = createDispatchActions(skincareDispatch);
+  // const createAction = createDispatchActions(familiesDispatch);
 
   const add = async (families) => {
-    const { data, error } = await addTea();
+    const { data, error } = await addTeaFamily();
     if (error) {
       showError(error.message);
     }
