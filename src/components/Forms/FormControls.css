@@ -1,6 +1,18 @@
 .FormControl {
   display: block;
 
+  .Label {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--caption-color);
+  }
+
+  .Options {
+    display: grid;
+    row-gap: 4px;
+    column-gap: 10px;
+  }
+
   input:not([type='checkbox']):not([type='radio']),
   select,
   textarea {
@@ -35,7 +47,19 @@
 .FormButton {
   padding: 5px 10px;
   height: 40px;
-  background: var(--color-2);
+  background: var(--button-color);
   border: 1px solid var(--header-color);
   cursor: pointer;
+
+  &.Icon {
+    font-size: 1.5em;
+  }
+}
+
+.Fieldset {
+  border-top: 1px solid black;
+
+  legend {
+    text-align: center;
+  }
 }

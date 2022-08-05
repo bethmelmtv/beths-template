@@ -9,7 +9,7 @@ import Home from './Home/Home.jsx';
 import About from './About/About.jsx';
 import Pokedex from './Pokedex/Pokedex.jsx';
 import { Toaster } from 'react-hot-toast';
-import Skincare from './Skincare/Skincare.jsx';
+import SkincareList from './Skincare/SkincareList.jsx';
 import SkincareProvider from '../state/context/SkincareContext';
 
 export default function App() {
@@ -22,7 +22,7 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="pokedex" element={<Pokedex />} />
             <Route path="about" element={<About />} />
-            <Route path="skincare" element={<Skincare />} />
+            <Route path="skincare-list" element={<SkincareList />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             {/* what does
           this line of code do? */}

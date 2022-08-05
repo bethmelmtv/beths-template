@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 
-export const SkincareStateContext = createContext();
+export const TeaStateContext = createContext();
 
 //what is happening here?
 function reducer(list, { type, payload }) {
@@ -18,22 +18,22 @@ function reducer(list, { type, payload }) {
   }
 }
 
-export default function SkincareProvider({ children }) {
+export default function TeaProvider({ children }) {
   //where is children coming from?
-  const [skincare, skincareDispatch] = useReducer(reducer, null);
+  const [families, familiesDispatch] = useReducer(reducer, null);
   // const [skincareEx, skincareExDispatch] = useReducer(reducer, null);
   //where is happening here ?
 
   const stateValue = {
-    skincare,
-    skincareDispatch,
+    families,
+    familiesDispatch,
   };
 
   //what is this piece of code doing?
 
   return (
-    <SkincareStateContext.Provider value={stateValue}>
+    <TeaStateContext.Provider value={stateValue}>
       {children}
-    </SkincareStateContext.Provider>
+    </TeaStateContext.Provider>
   );
 }

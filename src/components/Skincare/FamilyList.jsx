@@ -1,5 +1,5 @@
-import { useSkincare } from '../../state/hooks/skincare.js';
-import styles from './Skincare.css';
+import { useSkincare } from '../../state/hooks/tea.js';
+import styles from './FamilyList.css';
 
 export default function Skincare() {
   const { skincare } = useSkincare(); //skincare destructured from hook
@@ -13,3 +13,5 @@ export default function Skincare() {
     </section>
   );
 }
+
+//equivelanet of family list
