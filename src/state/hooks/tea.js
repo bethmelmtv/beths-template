@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
-import { TeaStateContext } from '../context/TeaContext';
+import { TeaStateContext, TeaActionContext } from '../context/TeaContext';
 import {
   getTeaFamiliesWithTeas,
   removeTeaFamily,
-  // addTeaFamily,
+  addTeaFamily,
   updateTeaFamily,
-  // addTea,
+  addTea,
 } from '../services/teaService';
 import { showSuccess, showError } from '../services/toaster.js';
 
@@ -66,19 +66,13 @@ export function useTeaFamilies() {
 //   };
 // }
 
-export function useTeaActions() {
-  const { familiesDispatch } = useContext(TeaStateContext);
+export function useTeaFamilyActions() {
+  const { familiesDispatch } = useContext(TeaActionContext);
 
   // const createAction = createDispatchActions(skincareDispatch);
 
-  // const add = createAction({
-  //   service: getAllSkincare,
-  //   type: 'add',
-  //   success: (data) => `Added new skincare "${data.name}"`,
-  // });
-
   const add = async (families) => {
-    const { data, error } = await getTeaFamiliesWithTeas();
+    const { data, error } = await addTea();
     if (error) {
       showError(error.message);
     }
@@ -88,27 +82,27 @@ export function useTeaActions() {
     }
   };
 
-  const remove = async (families) => {
-    const { data, error } = await removeTeaFamily();
-    if (error) {
-      showError(error.message);
-    }
-    if (data) {
-      familiesDispatch({ type: 'delete', payload: data });
-      showSuccess(`Deleted ${data.name}`);
-    }
-  };
+  // const remove = async (families) => {
+  //   const { data, error } = await removeTeaFamily();
+  //   if (error) {
+  //     showError(error.message);
+  //   }
+  //   if (data) {
+  //     familiesDispatch({ type: 'remove', payload: data });
+  //     showSuccess(`Deleted ${data.name}`);
+  //   }
+  // };
 
-  const update = async (families) => {
-    const { data, error } = await updateTeaFamily();
-    if (error) {
-      showError(error.message);
-    }
-    if (data) {
-      familiesDispatch({ type: 'update', payload: data });
-      showSuccess(`Updated ${data.name}`);
-    }
-  };
+  // const update = async (families) => {
+  //   const { data, error } = await updateTeaFamily();
+  //   if (error) {
+  //     showError(error.message);
+  //   }
+  //   if (data) {
+  //     ({ type: 'update', payload: data });
+  //     showSuccess(`Updated ${data.name}`);
+  //   }
+  // };
 
-  return { add, remove, update };
+  return { add };
 }

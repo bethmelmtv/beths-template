@@ -2,9 +2,11 @@ import client from './supabase-client.js';
 
 export async function getTeaFamiliesWithTeas() {
   const response = await client.from('tea_family').select(`
+  id,
   family,
   teas (
-    tea_family_id
+    tea_family_id,
+    tea_name
   )
 `);
   console.log(response);

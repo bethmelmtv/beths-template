@@ -9,26 +9,26 @@ import Home from './Home/Home.jsx';
 import About from './About/About.jsx';
 import Pokedex from './Pokedex/Pokedex.jsx';
 import { Toaster } from 'react-hot-toast';
-import SkincareList from './Skincare/SkincareList.jsx';
-import SkincareProvider from '../state/context/SkincareContext';
+import FamilyList from './Teas/FamilyList';
+import TeaProvider from '../state/context/TeaContext';
 
 export default function App() {
   return (
     <Router>
       <Toaster />
-      <SkincareProvider>
+      <TeaProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="pokedex" element={<Pokedex />} />
             <Route path="about" element={<About />} />
-            <Route path="skincare-list" element={<SkincareList />} />
+            <Route path="tea-list" element={<FamilyList />} />
             <Route path="*" element={<Navigate to="/" replace />} />
             {/* what does
           this line of code do? */}
           </Route>
         </Routes>
-      </SkincareProvider>
+      </TeaProvider>
     </Router>
   );
 }

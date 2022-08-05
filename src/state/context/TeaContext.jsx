@@ -1,6 +1,7 @@
 import { createContext, useReducer } from 'react';
 
 export const TeaStateContext = createContext();
+export const TeaActionContext = createContext();
 
 //what is happening here?
 function reducer(list, { type, payload }) {
