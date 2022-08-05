@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { TeaStateContext, TeaActionContext } from '../context/TeaContext';
+import { TeaStateContext } from '../context/TeaContext';
 import {
   getTeaFamiliesWithTeas,
   removeTeaFamily,
@@ -77,27 +77,17 @@ export function useTeaFamilyActions() {
     success: (data) => `Added new family ${data.family}`,
   });
 
-  // const remove = async (families) => {
-  //   const { data, error } = await removeTeaFamily();
-  //   if (error) {
-  //     showError(error.message);
-  //   }
-  //   if (data) {
-  //     familiesDispatch({ type: 'remove', payload: data });
-  //     showSuccess(`Deleted ${data.name}`);
-  //   }
-  // };
+  const remove = createAction({
+    service: removeTeaFamily,
+    type: 'remove',
+    success: (data) => `Removed tea family ${data.family}`,
+  });
 
-  // const update = async (families) => {
-  //   const { data, error } = await updateTeaFamily();
-  //   if (error) {
-  //     showError(error.message);
-  //   }
-  //   if (data) {
-  //     ({ type: 'update', payload: data });
-  //     showSuccess(`Updated ${data.name}`);
-  //   }
-  // };
+  const update = createAction({
+    service: updateTeaFamily,
+    type: 'update',
+    success: (data) => `Update tea family ${data.family}`,
+  });
 
-  return { add };
+  return { add, remove, update };
 }
