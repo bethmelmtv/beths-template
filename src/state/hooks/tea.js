@@ -67,20 +67,15 @@ function createDispatchActions(dispatch) {
 }
 
 export function useTeaFamilyActions() {
-  const { familiesDispatch } = useContext(TeaActionContext);
+  const { familiesDispatch } = useContext(TeaStateContext);
 
-  // const createAction = createDispatchActions(familiesDispatch);
+  const createAction = createDispatchActions(familiesDispatch);
 
-  const add = async (families) => {
-    const { data, error } = await addTeaFamily();
-    if (error) {
-      showError(error.message);
-    }
-    if (data) {
-      familiesDispatch({ type: 'add', payload: data });
-      showSuccess(`Added ${data.name}`);
-    }
-  };
+  const add = createAction({
+    service: addTeaFamily,
+    type: 'add',
+    success: (data) => `Added new family ${data.family}`,
+  });
 
   // const remove = async (families) => {
   //   const { data, error } = await removeTeaFamily();

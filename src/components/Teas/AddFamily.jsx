@@ -10,7 +10,7 @@ export default function AddFamily() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await add({ name });
+    await add({ family: name });
     setName('');
   };
 
