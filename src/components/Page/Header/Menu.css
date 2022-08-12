@@ -21,8 +21,9 @@
     position: absolute;
     top: 100%;
     padding: 20px 10px;
-    background: rgba(144, 238, 144, 0.948);
+    background: #bee9e8;
     transform: translateX(-100%);
+    color: #b36a5e;
     transition: transform 200ms ease-in;
   }
 }

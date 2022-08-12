@@ -1,8 +1,8 @@
 .Header {
   position: sticky;
   top: 0;
-  background: pink;
-
+  background: #587b7f;
+  color: white;
   height: 30px;
 
   display: grid;
