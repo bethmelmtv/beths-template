@@ -5,7 +5,7 @@ import { FormButton, InputControl } from '../Forms/FormControls.jsx';
 import styles from './Profile.css';
 
 export default function Profile() {
-  const [, updateProfile] = useProfile();
+  const [updateProfile] = useProfile();
   const [profile, handleChange] = useForm();
   const [preview, setPreview] = useState();
 

@@ -13,6 +13,8 @@ import FamilyList from './Teas/FamilyList';
 import TeaProvider from '../state/context/TeaContext';
 import UserProvider from '../state/context/UserContext.jsx';
 import Families from '../components/Teas/Families';
+import UserAuth from '../components/UserAuth/ProtectRoutes';
+import ProtectedRoutes from '../components/UserAuth/ProtectRoutes';
 
 export default function App() {
   return (
@@ -21,15 +23,16 @@ export default function App() {
         <Toaster />
         <TeaProvider>
           <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="pokedex" element={<Pokedex />} />
+            <Route path="user/*" element={<UserAuth />} />
+            <Route element={<Layout />}>
+              <Route element={<ProtectedRoutes />}>
+                <Route index element={<Home />} />
+                <Route path="pokedex" element={<Pokedex />} />
+                <Route path="tea-list" element={<FamilyList />} />
+                <Route path="tea-families" element={<Families />} />
+              </Route>
               <Route path="about" element={<About />} />
-              <Route path="tea-list" element={<FamilyList />} />
-              <Route path="tea-families" element={<Families />} />
               <Route path="*" element={<Navigate to="/" replace />} />
-              {/* what does
-          this line of code do? */}
             </Route>
           </Routes>
         </TeaProvider>
