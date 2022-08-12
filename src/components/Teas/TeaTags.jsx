@@ -3,11 +3,12 @@ import { InputControl, FormButton } from '../Forms/FormControls.jsx';
 import styles from './TeaTags.css';
 
 export default function TeaTags({ teas }) {
+  console.log(teas, 'TEASSSS');
   return (
     <>
       <ul className={styles.TeaTags}>
         {teas.map((tea) => (
-          <li key={tea.id}>
+          <li key={tea.tea_name}>
             <h3>{tea.tea_name}</h3>
             <DeleteButton />
           </li>

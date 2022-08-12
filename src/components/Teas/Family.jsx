@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTeaFamilyActions } from '../../state/hooks/tea.js';
-// import BunnyTags from './BunnyTags.jsx';
+import TeaTags from './TeaTags.jsx';
 import DeleteButton from '../Forms/DeleteButton.jsx';
 import { InputControl } from '../Forms/FormControls.jsx';
 import styles from './Family.css';
@@ -24,7 +24,7 @@ export default function Family({ family }) {
       <DeleteButton className={styles.DeleteButton} onClick={handleRemove} />
       <div className={styles.ContentContainer}>
         <EditableHeader initialValue={family.family} onEdit={handleEdit} />
-        {/* <BunnyTags bunnies={family.bunnies} /> */}
+        <TeaTags teas={family.teas} />
       </div>
     </li>
   );

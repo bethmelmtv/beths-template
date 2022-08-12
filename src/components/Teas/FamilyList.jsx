@@ -13,5 +13,3 @@ export default function FamilyList() {
     </section>
   );
 }
-
-// return <Family key={family.id} family={family}>{family.family}</Family>;/
