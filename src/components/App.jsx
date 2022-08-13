@@ -6,20 +6,32 @@ import {
 } from 'react-router-dom';
 import Layout from './Page/Layout.jsx';
 import Home from './Home/Home.jsx';
-import List from './List/List.jsx';
 import About from './About/About.jsx';
+import Pokedex from './Pokedex/Pokedex.jsx';
+import { Toaster } from 'react-hot-toast';
+import FamilyList from './Teas/FamilyList';
+import TeaProvider from '../state/context/TeaContext';
+import Families from '../components/Teas/Families';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="list" element={<List />} />
-          <Route path="about" element={<About />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
+      <Toaster />
+      <TeaProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="pokedex" element={<Pokedex />} />
+            <Route path="about" element={<About />} />
+            <Route path="tea-list" element={<FamilyList />} />
+            <Route path="tea-families" element={<Families />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* what does
+          this line of code do? */}
+          </Route>
+        </Routes>
+      </TeaProvider>
     </Router>
   );
 }
+// wewewewsdsdsds

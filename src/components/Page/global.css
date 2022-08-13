@@ -7,4 +7,26 @@ body {
 }
 
 :root {
+  font-family: 'Montserrat', sans-serif;
+
+  --header-color: #587b7f;
+  --color-2: #b36a5e;
+  --offset-color: #f9c784;
+  --color-4: #bee9e8;
+  --background-color: #f9c784;
+  --black-color: rgb(27, 42, 48);
+  --caption-color: rgb(65, 99, 112);
+  --white-color: white;
+}
+
+body {
+  font-family: var(--primary-font);
+  background: var(--background-color);
+  color: var(--black-color);
+}
+
+:global(label-text) {
+  font-family: var(--label-font);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
